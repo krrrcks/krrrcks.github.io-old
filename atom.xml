@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Small pieces]]></title>
+  <link href="http://krrrcks.github.io/atom.xml" rel="self"/>
+  <link href="http://krrrcks.github.io/"/>
+  <updated>2014-05-25T15:45:04+00:00</updated>
+  <id>http://krrrcks.github.io/</id>
+  <author>
+    <name><![CDATA[Krrrcks]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First Post]]></title>
+    <link href="http://krrrcks.github.io/blog/2014/05/24/first-post/"/>
+    <updated>2014-05-24T18:13:02+00:00</updated>
+    <id>http://krrrcks.github.io/blog/2014/05/24/first-post</id>
+    <content type="html"><![CDATA[<p>This is my first blog post. I try to use Octopress for it. Let&rsquo;s see if this works somehow.</p>
+]]></content>
+  </entry>
+  
+</feed>
