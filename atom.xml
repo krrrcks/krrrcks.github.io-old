@@ -4,7 +4,7 @@
   <title><![CDATA[Small pieces]]></title>
   <link href="http://krrrcks.github.io/atom.xml" rel="self"/>
   <link href="http://krrrcks.github.io/"/>
-  <updated>2014-05-26T09:39:40+00:00</updated>
+  <updated>2014-05-26T12:23:31+00:00</updated>
   <id>http://krrrcks.github.io/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -20,7 +20,7 @@
     <id>http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress</id>
     <content type="html"><![CDATA[<p>After my trouble with installing all the dependencies for Octopress I
 came up with the following Dockerfile for Docker. This follows the
-instructions from the Octopress&#8217; homepage and uses RVM for managing the
+instructions from the Octopress homepage and uses RVM for managing the
 ruby dependencies.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
