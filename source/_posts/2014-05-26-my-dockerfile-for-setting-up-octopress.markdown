@@ -7,7 +7,7 @@ categories:
 ---
 After my trouble with installing all the dependencies for Octopress I 
 came up with the following Dockerfile for Docker. This follows the 
-instructions from the Octopress' homepage and uses RVM for managing the
+instructions from the Octopress homepage and uses RVM for managing the
 ruby dependencies.
 
 ```
