@@ -14,7 +14,7 @@ ruby dependencies.
 # dockerfile for octopress
 
 FROM ubuntu:14.04
-MAINTAINER krrrcks <krrrcks@dbrunner.de>
+MAINTAINER krrrcks <krrrcks@krrrcks.net>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update; \
