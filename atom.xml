@@ -4,7 +4,7 @@
   <title><![CDATA[Small pieces]]></title>
   <link href="http://krrrcks.github.io/atom.xml" rel="self"/>
   <link href="http://krrrcks.github.io/"/>
-  <updated>2014-05-26T12:47:39+00:00</updated>
+  <updated>2014-05-26T17:30:03+00:00</updated>
   <id>http://krrrcks.github.io/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -53,7 +53,7 @@ ruby dependencies.</p>
 </pre></td><td class='code'><pre><code class=''><span class='line'># dockerfile for octopress
 </span><span class='line'>
 </span><span class='line'>FROM ubuntu:14.04
-</span><span class='line'>MAINTAINER krrrcks &lt;krrrcks@dbrunner.de&gt;
+</span><span class='line'>MAINTAINER krrrcks &lt;krrrcks@krrrcks.net&gt;
 </span><span class='line'>ENV DEBIAN_FRONTEND noninteractive
 </span><span class='line'>
 </span><span class='line'>RUN apt-get update; \
