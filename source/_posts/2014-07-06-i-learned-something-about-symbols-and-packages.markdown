@@ -18,7 +18,7 @@ the member keys to symbols (see CL-JSON's [documentation](http://common-lisp.net
 
 I wrote a small test case to show the effect and explain what went wrong. 
 
-``` common-lisp 
+```
 (ql:quickload '("hunchentoot" "cl-who"))
 ;; direct loading via ql only for demonstration purposes, normally I
 ;; would use a asdf:defsystem for that.
@@ -74,7 +74,7 @@ the keys are ```MY-APP::FOO``` and ```MY-APP::BAR```.
 And this test fails. Therefore ```NIL``` is returned which is correct.
 
 So I rewrote the ```get-value``` function to:
-``` common-lisp
+``` 
 (defun get-value (key)
   "Returns the value with KEY from *MY-A-LIST*."
   (cdr (assoc (intern (string-upcase key)
