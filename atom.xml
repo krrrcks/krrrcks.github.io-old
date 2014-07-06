@@ -4,7 +4,7 @@
   <title><![CDATA[Small pieces]]></title>
   <link href="http://krrrcks.github.io/atom.xml" rel="self"/>
   <link href="http://krrrcks.github.io/"/>
-  <updated>2014-07-06T15:55:30+00:00</updated>
+  <updated>2014-07-06T16:19:00+00:00</updated>
   <id>http://krrrcks.github.io/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[I Learned Something About Symbols and Packages]]></title>
+    <title type="html"><![CDATA[I learned something about symbols and packages]]></title>
     <link href="http://krrrcks.github.io/blog/2014/07/06/i-learned-something-about-symbols-and-packages/"/>
     <updated>2014-07-06T09:02:39+00:00</updated>
     <id>http://krrrcks.github.io/blog/2014/07/06/i-learned-something-about-symbols-and-packages</id>
@@ -156,7 +156,7 @@ And this test fails. Therefore <code>NIL</code> is returned which is correct.</p
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Unicode Support for Octopress]]></title>
+    <title type="html"><![CDATA[Unicode support for Octopress]]></title>
     <link href="http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress/"/>
     <updated>2014-06-10T09:26:22+00:00</updated>
     <id>http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress</id>
@@ -239,7 +239,7 @@ browser nearly the same time.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[My Dockerfile for Setting Up Octopress]]></title>
+    <title type="html"><![CDATA[My Dockerfile for setting up Octopress]]></title>
     <link href="http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/"/>
     <updated>2014-05-26T09:24:00+00:00</updated>
     <id>http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress</id>
@@ -309,7 +309,7 @@ ruby dependencies.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[First Post]]></title>
+    <title type="html"><![CDATA[First post]]></title>
     <link href="http://krrrcks.github.io/blog/2014/05/24/first-post/"/>
     <updated>2014-05-24T18:13:02+00:00</updated>
     <id>http://krrrcks.github.io/blog/2014/05/24/first-post</id>
