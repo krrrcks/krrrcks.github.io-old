@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Docker | Small pieces]]></title>
+  <link href="http://krrrcks.github.io/blog/categories/docker/atom.xml" rel="self"/>
+  <link href="http://krrrcks.github.io/"/>
+  <updated>2014-07-07T12:23:18+00:00</updated>
+  <id>http://krrrcks.github.io/</id>
+  <author>
+    <name><![CDATA[Krrrcks]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Unicode support for Octopress]]></title>
+    <link href="http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress/"/>
+    <updated>2014-06-10T09:26:22+00:00</updated>
+    <id>http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress</id>
+    <content type="html"><![CDATA[<p>Well, it seems Octopress/Jekyll would like to have a locale set
+for UTF-8 support. I followed <a href="http://www.dominik-gaetjens.de/blog/2012/06/09/utf-8-in-octopress/">this (text in German)</a> hint and now my Dockerfile looks
+like this:</p>
+
+<p>```</p>
+
+<h1>dockerfile for octopress</h1>
+
+<p>FROM ubuntu:14.04
+MAINTAINER krrrcks <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x6b;&#114;&#114;&#x72;&#99;&#x6b;&#115;&#64;&#x6b;&#x72;&#x72;&#114;&#x63;&#x6b;&#115;&#x2e;&#110;&#x65;&#x74;">&#x6b;&#x72;&#x72;&#114;&#x63;&#x6b;&#x73;&#x40;&#x6b;&#114;&#x72;&#x72;&#x63;&#x6b;&#115;&#46;&#x6e;&#x65;&#116;</a>
+ENV DEBIAN_FRONTEND noninteractive</p>
+
+<p>RUN apt-get update; \
+  apt-get -q -y upgrade
+RUN /usr/sbin/locale-gen en_US.UTF-8; \
+  update-locale LANG=en_US.UTF-8
+RUN apt-get -q -y install git curl; \
+  apt-get clean
+RUN git clone git://github.com/imathis/octopress.git /opt/octopress
+RUN curl -L <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable &mdash;ruby
+ENV HOME /root
+RUN echo &ldquo;export LC_ALL=en_US.UTF-8&rdquo; >> /root/.bashrc
+RUN echo &ldquo;export LANG=en_US.UTF-8&rdquo; >> /root/.bashrc
+RUN echo &ldquo;source /usr/local/rvm/scripts/rvm&rdquo; >> /root/.bashrc;
+RUN /bin/bash -l -c &ldquo;source /usr/local/rvm/scripts/rvm; \
+  rvm install 1.9.3; \
+  rvm use 1.9.3; \
+  rvm rubygems latest; \
+  cd /opt/octopress; \
+  gem install bundler; \
+  bundle install; \
+  rake install&rdquo;
+RUN echo &ldquo;rvm use 1.9.3&rdquo; >> /root/.bashrc</p>
+
+<p>WORKDIR /opt/octopress
+EXPOSE 4000
+CMD [&ldquo;/bin/bash&rdquo;]
+```</p>
+
+<p>After playing around with Docker and Octopress I put the whole <code>/opt/octopress</code> folder on my host machine and then
+restarted the image with the <code>-v</code> flag. Therefore I can edit the files on my host machine with my favorite editor
+and use the container only for producing the HTML files, for preview and for publishing.</p>
+
+<p>The <code>rake preview</code> is a neat feature because the server always looks for changed files and produces the HTML
+files on the fly. That means I can edit the files in my editor and could see the resulting pages in a
+browser nearly the same time.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My Dockerfile for setting up Octopress]]></title>
+    <link href="http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/"/>
+    <updated>2014-05-26T09:24:00+00:00</updated>
+    <id>http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress</id>
+    <content type="html"><![CDATA[<p>After my trouble with installing all the dependencies for Octopress I
+came up with the following Dockerfile for Docker. This follows the
+instructions from the Octopress homepage and uses RVM for managing the
+ruby dependencies.</p>
+
+<p>```</p>
+
+<h1>dockerfile for octopress</h1>
+
+<p>FROM ubuntu:14.04
+MAINTAINER krrrcks <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x6b;&#x72;&#114;&#114;&#x63;&#x6b;&#x73;&#64;&#x6b;&#114;&#x72;&#114;&#99;&#107;&#115;&#x2e;&#110;&#x65;&#116;">&#107;&#x72;&#x72;&#x72;&#x63;&#x6b;&#115;&#64;&#107;&#114;&#114;&#x72;&#x63;&#107;&#x73;&#x2e;&#x6e;&#x65;&#x74;</a>
+ENV DEBIAN_FRONTEND noninteractive</p>
+
+<p>RUN apt-get update; \
+  apt-get -q -y upgrade
+RUN apt-get -q -y install git curl; \
+  apt-get clean
+RUN git clone git://github.com/imathis/octopress.git /opt/octopress
+RUN curl -L <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable &mdash;ruby
+ENV HOME /root
+RUN echo &ldquo;source /usr/local/rvm/scripts/rvm&rdquo; >> /root/.bashrc;
+RUN /bin/bash -l -c &ldquo;source /usr/local/rvm/scripts/rvm; \
+  rvm install 1.9.3; \
+  rvm use 1.9.3; \
+  rvm rubygems latest; \
+  cd /opt/octopress; \
+  gem install bundler; \
+  bundle install; \
+  rake install&rdquo;
+RUN echo &ldquo;rvm use 1.9.3&rdquo; >> /root/.bashrc</p>
+
+<p>WORKDIR /opt/octopress
+EXPOSE 4000
+CMD [&ldquo;/bin/bash&rdquo;]
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
