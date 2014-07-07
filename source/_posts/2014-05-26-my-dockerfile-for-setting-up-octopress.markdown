@@ -3,7 +3,7 @@ layout: post
 title: "My Dockerfile for setting up Octopress"
 date: 2014-05-26 09:24:00 +0000
 comments: true
-categories: 
+categories: [Docker, Octopress]
 ---
 After my trouble with installing all the dependencies for Octopress I 
 came up with the following Dockerfile for Docker. This follows the 

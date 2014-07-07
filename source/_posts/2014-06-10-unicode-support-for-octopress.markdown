@@ -3,7 +3,7 @@ layout: post
 title: "Unicode support for Octopress"
 date: 2014-06-10 09:26:22 +0000
 comments: true
-categories: 
+categories: [Docker, Octopress]
 ---
 
 Well, it seems Octopress/Jekyll would like to have a locale set

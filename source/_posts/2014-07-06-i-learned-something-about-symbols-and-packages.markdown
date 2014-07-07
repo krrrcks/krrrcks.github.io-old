@@ -4,6 +4,7 @@ title: "I learned something about symbols and packages"
 date: 2014-07-06 09:02:39 +0000
 comments: true
 categories: 
+ - "Common Lisp"
 ---
 
 I am using Common Lisp for developing a web application. Several days
