@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Unicode support for Octopress - Small pieces</title>
+  <title>DateTime conversion can be tricky - Small pieces</title>
   <meta name="author" content="Krrrcks">
 
   
-  <meta name="description" content="Well, it seems Octopress/Jekyll would like to have a locale set
-for UTF-8 support. I followed this (text in German) hint and now my Dockerfile looks &hellip;">
+  <meta name="description" content="I wrote a small Lisp application and a JavaScript client gets some
+date from that application. All time stamps are returned as &ldquo;Lisp&rdquo; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ for UTF-8 support. I followed this (text in German) hint and now my Dockerfile l
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress">
+  <link rel="canonical" href="http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Small pieces" type="application/atom+xml">
@@ -70,7 +70,7 @@ for UTF-8 support. I followed this (text in German) hint and now my Dockerfile l
   
   <header>
     
-      <h1 class="entry-title">Unicode support for Octopress</h1>
+      <h1 class="entry-title">DateTime conversion can be tricky</h1>
     
     
       <p class="meta">
@@ -86,88 +86,56 @@ for UTF-8 support. I followed this (text in German) hint and now my Dockerfile l
   
 
 
-<time datetime="2014-06-10T09:26:22+00:00" pubdate data-updated="true">Jun 10<span>th</span>, 2014</time>
+<time datetime="2014-07-24T09:41:36+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Well, it seems Octopress/Jekyll would like to have a locale set
-for UTF-8 support. I followed <a href="http://www.dominik-gaetjens.de/blog/2012/06/09/utf-8-in-octopress/">this (text in German)</a> hint and now my Dockerfile looks
-like this:</p>
+<div class="entry-content"><p>I wrote a small Lisp application and a JavaScript client gets some
+date from that application. All time stamps are returned as &ldquo;Lisp&rdquo;
+time stamps, i.e. an integer with seconds where zero equals Jan 01
+1900.</p>
+
+<p>In the JS client the time stamp is then converted to JS time stamps,
+i.e. millisconds where zero equals Jan 01 1970.</p>
+
+<p>When testing the application I noticed that sometimes the displayed
+date is one day behind. For example in the data base I have Jan 05
+1980 but in JavaScript I get a Jan 04 1980. But some other dates
+worked: A time stamp Jan 05 1970 was correctly converted to Jan 05
+1970.</p>
+
+<p>I had a look into the JavaScript code and found:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># dockerfile for octopress
-</span><span class='line'>
-</span><span class='line'>FROM ubuntu:14.04
-</span><span class='line'>MAINTAINER krrrcks &lt;krrrcks@krrrcks.net&gt;
-</span><span class='line'>ENV DEBIAN_FRONTEND noninteractive
-</span><span class='line'>
-</span><span class='line'>RUN apt-get update; \
-</span><span class='line'>  apt-get -q -y upgrade
-</span><span class='line'>RUN /usr/sbin/locale-gen en_US.UTF-8; \
-</span><span class='line'>  update-locale LANG=en_US.UTF-8
-</span><span class='line'>RUN apt-get -q -y install git curl; \
-</span><span class='line'>  apt-get clean
-</span><span class='line'>RUN git clone git://github.com/imathis/octopress.git /opt/octopress
-</span><span class='line'>RUN curl -L https://get.rvm.io | bash -s stable --ruby
-</span><span class='line'>ENV HOME /root
-</span><span class='line'>RUN echo "export LC_ALL=en_US.UTF-8" &gt;&gt; /root/.bashrc
-</span><span class='line'>RUN echo "export LANG=en_US.UTF-8" &gt;&gt; /root/.bashrc
-</span><span class='line'>RUN echo "source /usr/local/rvm/scripts/rvm" &gt;&gt; /root/.bashrc; 
-</span><span class='line'>RUN /bin/bash -l -c "source /usr/local/rvm/scripts/rvm; \
-</span><span class='line'>  rvm install 1.9.3; \
-</span><span class='line'>  rvm use 1.9.3; \
-</span><span class='line'>  rvm rubygems latest; \
-</span><span class='line'>  cd /opt/octopress; \
-</span><span class='line'>  gem install bundler; \
-</span><span class='line'>  bundle install; \
-</span><span class='line'>  rake install" 
-</span><span class='line'>RUN echo "rvm use 1.9.3" &gt;&gt; /root/.bashrc
-</span><span class='line'>
-</span><span class='line'>WORKDIR /opt/octopress
-</span><span class='line'>EXPOSE 4000
-</span><span class='line'>CMD ["/bin/bash"] </span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>convA = function(ts) {
+</span><span class='line'>  tmp = new Date(ts*1000);
+</span><span class='line'>  tmp.setFullYear(tmp.getFullYear() - 70);
+</span><span class='line'>  return tmp.getTime();
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p>After playing around with Docker and Octopress I put the whole <code>/opt/octopress</code> folder on my host machine and then
-restarted the image with the <code>-v</code> flag. Therefore I can edit the files on my host machine with my favorite editor
-and use the container only for producing the HTML files, for preview and for publishing.</p>
+<p>It&rsquo;s likely the developer thought: &ldquo;Well, it&rsquo;s millisecond instead of
+second. Therefore I multiply by 1,000. But then I am 70 years in the
+future and I have to substract 70 years and everything will be ok.&rdquo;</p>
 
-<p>The <code>rake preview</code> is a neat feature because the server always looks for changed files and produces the HTML
-files on the fly. That means I can edit the files in my editor and could see the resulting pages in a
-browser nearly the same time.</p>
+<p>After thinking a while I came to the conclusion: Of course not!</p>
+
+<p>The developer made the assumption that there are as many leap years
+between 1900 and 1970 as between <code>ts</code> and <code>ts+70</code>. Obviously that
+assumption does not hold for all time stamps. And therefore sometimes
+the resulting JavaScript date is one day behind.</p>
+
+<p>So a better solution would be to substract all seconds between 1900
+and 1970 from <code>ts</code>, multiply by 1,000 and treat this as a JavaScript
+time stamp. Perhaps best would be to do the conversion in the Lisp
+process and only deliver a JavaScript-like time stamp.</p>
 </div>
 
 
@@ -190,12 +158,12 @@ browser nearly the same time.</p>
   
 
 
-<time datetime="2014-06-10T09:26:22+00:00" pubdate data-updated="true">Jun 10<span>th</span>, 2014</time>
+<time datetime="2014-07-24T09:41:36+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/docker/'>Docker</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/common-lisp/'>Common Lisp</a>, <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
   
 </span>
 
@@ -204,7 +172,7 @@ browser nearly the same time.</p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress/" data-via="krrrcks" data-counturl="http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky/" data-via="krrrcks" data-counturl="http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky/" >Tweet</a>
   
   
   
@@ -213,10 +181,8 @@ browser nearly the same time.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/" title="Previous Post: My Dockerfile for setting up Octopress">&laquo; My Dockerfile for setting up Octopress</a>
+        <a class="basic-alignment left" href="/blog/2014/07/06/i-learned-something-about-symbols-and-packages/" title="Previous Post: I learned something about symbols and packages">&laquo; I learned something about symbols and packages</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/07/06/i-learned-something-about-symbols-and-packages/" title="Next Post: I learned something about symbols and packages">I learned something about symbols and packages &raquo;</a>
       
     </p>
   </footer>

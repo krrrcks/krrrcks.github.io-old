@@ -9,9 +9,8 @@
   <meta name="author" content="Krrrcks">
 
   
-  <meta name="description" content="I am using Common Lisp for developing a web application. Several days
-ago a new part of this application didn&rsquo;t worked as supposed and I
-spent &hellip;">
+  <meta name="description" content="I wrote a small Lisp application and a JavaScript client gets some
+date from that application. All time stamps are returned as &ldquo;Lisp&rdquo; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +67,84 @@ spent &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/24/datetime-conversion-can-be-tricky/">DateTime conversion can be tricky</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-24T09:41:36+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I wrote a small Lisp application and a JavaScript client gets some
+date from that application. All time stamps are returned as &ldquo;Lisp&rdquo;
+time stamps, i.e. an integer with seconds where zero equals Jan 01
+1900.</p>
+
+<p>In the JS client the time stamp is then converted to JS time stamps,
+i.e. millisconds where zero equals Jan 01 1970.</p>
+
+<p>When testing the application I noticed that sometimes the displayed
+date is one day behind. For example in the data base I have Jan 05
+1980 but in JavaScript I get a Jan 04 1980. But some other dates
+worked: A time stamp Jan 05 1970 was correctly converted to Jan 05
+1970.</p>
+
+<p>I had a look into the JavaScript code and found:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>convA = function(ts) {
+</span><span class='line'>  tmp = new Date(ts*1000);
+</span><span class='line'>  tmp.setFullYear(tmp.getFullYear() - 70);
+</span><span class='line'>  return tmp.getTime();
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s likely the developer thought: &ldquo;Well, it&rsquo;s millisecond instead of
+second. Therefore I multiply by 1,000. But then I am 70 years in the
+future and I have to substract 70 years and everything will be ok.&rdquo;</p>
+
+<p>After thinking a while I came to the conclusion: Of course not!</p>
+
+<p>The developer made the assumption that there are as many leap years
+between 1900 and 1970 as between <code>ts</code> and <code>ts+70</code>. Obviously that
+assumption does not hold for all time stamps. And therefore sometimes
+the resulting JavaScript date is one day behind.</p>
+
+<p>So a better solution would be to substract all seconds between 1900
+and 1970 from <code>ts</code>, multiply by 1,000 and treat this as a JavaScript
+time stamp. Perhaps best would be to do the conversion in the Lisp
+process and only deliver a JavaScript-like time stamp.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -492,6 +569,10 @@ ruby dependencies.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/24/datetime-conversion-can-be-tricky/">DateTime conversion can be tricky</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/07/06/i-learned-something-about-symbols-and-packages/">I learned something about symbols and packages</a>
