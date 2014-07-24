@@ -7,7 +7,7 @@ categories: [JavaScript, "Common Lisp"]
 ---
 
 I wrote a small Lisp application and a JavaScript client gets some
-date from that application. All time stamps are returned as "Lisp"
+data from that application. All time stamps are returned as "Lisp"
 time stamps, i.e. an integer with seconds where zero equals Jan 01
 1900. 
 
