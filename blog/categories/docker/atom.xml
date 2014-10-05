@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Docker | Small pieces]]></title>
   <link href="http://krrrcks.github.io/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://krrrcks.github.io/"/>
-  <updated>2014-10-05T11:27:48+00:00</updated>
+  <updated>2014-10-05T11:30:26+00:00</updated>
   <id>http://krrrcks.github.io/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mind the storage driver for Ubuntu cloud images (on Azure)]]></title>
+    <link href="http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/"/>
+    <updated>2014-07-24T12:30:43+00:00</updated>
+    <id>http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure</id>
+    <content type="html"><![CDATA[<p>A few days ago I wanted to build Firefox OS' newest release for a
+friend. Because I did not wanted these GB of code, binaries etc. on my
+notebook I fired up an Ubuntu image on Microsoft Azure. I feared that
+at a certain point in the build process I may had to download
+everything to my local machine and therefore I installed Docker via a
+simple</p>
+
+<p><code>
+sudo apt-get install docker.io
+</code></p>
+
+<p>Then I started the build process as laid out on Mozilla&rsquo;s Developer
+Network. But, during downloading the source code (that&rsquo;s about 12 GB
+of Git repositories from Mozilla and Android), I got a &ldquo;no more space
+left on device&rdquo;. That was strange: I had a 100 GB volume attached to
+the VM and enough space and inodes left. After some searching I asked
+on the IRC channel and got a good hint: &ldquo;What&rsquo;s your storage driver?&rdquo;</p>
+
+<p>Well, I thought that it&rsquo;s AUFS; I wanted to add &ldquo;as usual&rdquo; because
+AUFS was available on my notebook from the beginning. But a <code>docker.io
+info</code> gave me:</p>
+
+<p><code>
+$ sudo docker.io info
+Containers: 0
+Images: 0
+Storage Driver: devicemapper
+ Pool Name: docker-8:1-131188-pool
+ Data file: /var/lib/docker/devicemapper/devicemapper/data
+ Metadata file: /var/lib/docker/devicemapper/devicemapper/metadata
+ Data Space Used: 291.5 Mb
+ Data Space Total: 102400.0 Mb
+ Metadata Space Used: 0.7 Mb
+ Metadata Space Total: 2048.0 Mb
+Execution Driver: native-0.1
+Kernel Version: 3.13.0-29-generic
+WARNING: No swap limit support
+</code></p>
+
+<p>I then learned that somehow the DeviceMapper driver only allows a
+certain amount of diffs and I reached that amount with my build
+process. (Maybe it&rsquo;s possible to relax that restriction but I do not
+know how.)</p>
+
+<p>I learned as well that the Ubuntu cloud image that is provided by
+Microsoft Azure doesn&rsquo;t have AUFS support. Therefore Docker uses the
+DeviceMapper storage driver instead. After I installed the AUFS
+support I could export the images, change the storage driver and
+import the images again.</p>
+
+<p>It would be nice seeing the Docker documentation being more detailed
+on those storage drivers.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Unicode support for Octopress]]></title>
@@ -27,7 +87,7 @@ like this:</p>
 <h1>dockerfile for octopress</h1>
 
 <p>FROM ubuntu:14.04
-MAINTAINER krrrcks <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#107;&#114;&#114;&#114;&#x63;&#x6b;&#x73;&#x40;&#x6b;&#x72;&#114;&#x72;&#99;&#x6b;&#115;&#46;&#x6e;&#x65;&#116;">&#x6b;&#114;&#x72;&#114;&#x63;&#107;&#115;&#64;&#107;&#114;&#x72;&#x72;&#99;&#107;&#x73;&#46;&#x6e;&#101;&#x74;</a>
+MAINTAINER krrrcks <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#107;&#x72;&#114;&#114;&#99;&#107;&#115;&#64;&#107;&#114;&#114;&#x72;&#x63;&#107;&#x73;&#46;&#x6e;&#101;&#116;">&#107;&#114;&#x72;&#x72;&#x63;&#x6b;&#115;&#64;&#x6b;&#x72;&#114;&#x72;&#x63;&#x6b;&#115;&#x2e;&#110;&#101;&#x74;</a>
 ENV DEBIAN_FRONTEND noninteractive</p>
 
 <p>RUN apt-get update; \
@@ -82,7 +142,7 @@ ruby dependencies.</p>
 <h1>dockerfile for octopress</h1>
 
 <p>FROM ubuntu:14.04
-MAINTAINER krrrcks <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x6b;&#x72;&#x72;&#114;&#99;&#107;&#x73;&#x40;&#107;&#114;&#x72;&#x72;&#99;&#x6b;&#x73;&#x2e;&#110;&#x65;&#x74;">&#x6b;&#x72;&#x72;&#x72;&#x63;&#107;&#x73;&#64;&#x6b;&#114;&#x72;&#x72;&#x63;&#x6b;&#115;&#x2e;&#x6e;&#x65;&#116;</a>
+MAINTAINER krrrcks <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x6b;&#x72;&#114;&#x72;&#x63;&#107;&#x73;&#x40;&#x6b;&#114;&#114;&#x72;&#99;&#x6b;&#115;&#x2e;&#110;&#x65;&#116;">&#107;&#x72;&#114;&#x72;&#99;&#107;&#x73;&#64;&#x6b;&#x72;&#114;&#x72;&#99;&#x6b;&#x73;&#x2e;&#x6e;&#x65;&#116;</a>
 ENV DEBIAN_FRONTEND noninteractive</p>
 
 <p>RUN apt-get update; \

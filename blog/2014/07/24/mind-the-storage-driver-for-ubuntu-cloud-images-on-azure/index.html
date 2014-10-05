@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>First post - Small pieces</title>
+  <title>Mind the storage driver for Ubuntu cloud images (on Azure) - Small pieces</title>
   <meta name="author" content="Krrrcks">
 
   
-  <meta name="description" content="This is my first blog post. I try to use Octopress for it. Let&rsquo;s see if this works somehow.
-">
+  <meta name="description" content="A few days ago I wanted to build Firefox OS&#8217; newest release for a
+friend. Because I did not wanted these GB of code, binaries etc. on my &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://krrrcks.github.io/blog/2014/05/24/first-post">
+  <link rel="canonical" href="http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Small pieces" type="application/atom+xml">
@@ -70,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">First post</h1>
+      <h1 class="entry-title">Mind the storage driver for Ubuntu cloud images (on Azure)</h1>
     
     
       <p class="meta">
@@ -86,14 +86,80 @@
   
 
 
-<time datetime="2014-05-24T18:13:02+00:00" pubdate data-updated="true">May 24<span>th</span>, 2014</time>
+<time datetime="2014-07-24T12:30:43+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This is my first blog post. I try to use Octopress for it. Let&rsquo;s see if this works somehow.</p>
+<div class="entry-content"><p>A few days ago I wanted to build Firefox OS&#8217; newest release for a
+friend. Because I did not wanted these GB of code, binaries etc. on my
+notebook I fired up an Ubuntu image on Microsoft Azure. I feared that
+at a certain point in the build process I may had to download
+everything to my local machine and therefore I installed Docker via a
+simple</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install docker.io</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Then I started the build process as laid out on Mozilla&rsquo;s Developer
+Network. But, during downloading the source code (that&rsquo;s about 12 GB
+of Git repositories from Mozilla and Android), I got a &ldquo;no more space
+left on device&rdquo;. That was strange: I had a 100 GB volume attached to
+the VM and enough space and inodes left. After some searching I asked
+on the IRC channel and got a good hint: &ldquo;What&rsquo;s your storage driver?&rdquo;</p>
+
+<p>Well, I thought that it&rsquo;s AUFS; I wanted to add &ldquo;as usual&rdquo; because
+AUFS was available on my notebook from the beginning. But a <code>docker.io
+info</code> gave me:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo docker.io info
+</span><span class='line'>Containers: 0
+</span><span class='line'>Images: 0
+</span><span class='line'>Storage Driver: devicemapper
+</span><span class='line'> Pool Name: docker-8:1-131188-pool
+</span><span class='line'> Data file: /var/lib/docker/devicemapper/devicemapper/data
+</span><span class='line'> Metadata file: /var/lib/docker/devicemapper/devicemapper/metadata
+</span><span class='line'> Data Space Used: 291.5 Mb
+</span><span class='line'> Data Space Total: 102400.0 Mb
+</span><span class='line'> Metadata Space Used: 0.7 Mb
+</span><span class='line'> Metadata Space Total: 2048.0 Mb
+</span><span class='line'>Execution Driver: native-0.1
+</span><span class='line'>Kernel Version: 3.13.0-29-generic
+</span><span class='line'>WARNING: No swap limit support</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I then learned that somehow the DeviceMapper driver only allows a
+certain amount of diffs and I reached that amount with my build
+process. (Maybe it&rsquo;s possible to relax that restriction but I do not
+know how.)</p>
+
+<p>I learned as well that the Ubuntu cloud image that is provided by
+Microsoft Azure doesn&rsquo;t have AUFS support. Therefore Docker uses the
+DeviceMapper storage driver instead. After I installed the AUFS
+support I could export the images, change the storage driver and
+import the images again.</p>
+
+<p>It would be nice seeing the Docker documentation being more detailed
+on those storage drivers.</p>
 </div>
 
 
@@ -116,12 +182,12 @@
   
 
 
-<time datetime="2014-05-24T18:13:02+00:00" pubdate data-updated="true">May 24<span>th</span>, 2014</time>
+<time datetime="2014-07-24T12:30:43+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/azure/'>Azure</a>, <a class='category' href='/blog/categories/docker/'>Docker</a>
   
 </span>
 
@@ -130,7 +196,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://krrrcks.github.io/blog/2014/05/24/first-post/" data-via="krrrcks" data-counturl="http://krrrcks.github.io/blog/2014/05/24/first-post/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/" data-via="krrrcks" data-counturl="http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/" >Tweet</a>
   
   
   
@@ -139,8 +205,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/07/24/datetime-conversion-can-be-tricky/" title="Previous Post: DateTime conversion can be tricky">&laquo; DateTime conversion can be tricky</a>
       
-        <a class="basic-alignment right" href="/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/" title="Next Post: My Dockerfile for setting up Octopress">My Dockerfile for setting up Octopress &raquo;</a>
       
     </p>
   </footer>

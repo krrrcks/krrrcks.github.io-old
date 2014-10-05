@@ -9,8 +9,8 @@
   <meta name="author" content="Krrrcks">
 
   
-  <meta name="description" content="I wrote a small Lisp application and a JavaScript client gets some
-data from that application. All time stamps are returned as &ldquo;Lisp&rdquo; &hellip;">
+  <meta name="description" content="A few days ago I wanted to build Firefox OS&#8217; newest release for a
+friend. Because I did not wanted these GB of code, binaries etc. on my &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +67,108 @@ data from that application. All time stamps are returned as &ldquo;Lisp&rdquo; &
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/">Mind the storage driver for Ubuntu cloud images (on Azure)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-24T12:30:43+00:00" pubdate data-updated="true">Jul 24<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few days ago I wanted to build Firefox OS&#8217; newest release for a
+friend. Because I did not wanted these GB of code, binaries etc. on my
+notebook I fired up an Ubuntu image on Microsoft Azure. I feared that
+at a certain point in the build process I may had to download
+everything to my local machine and therefore I installed Docker via a
+simple</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install docker.io</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Then I started the build process as laid out on Mozilla&rsquo;s Developer
+Network. But, during downloading the source code (that&rsquo;s about 12 GB
+of Git repositories from Mozilla and Android), I got a &ldquo;no more space
+left on device&rdquo;. That was strange: I had a 100 GB volume attached to
+the VM and enough space and inodes left. After some searching I asked
+on the IRC channel and got a good hint: &ldquo;What&rsquo;s your storage driver?&rdquo;</p>
+
+<p>Well, I thought that it&rsquo;s AUFS; I wanted to add &ldquo;as usual&rdquo; because
+AUFS was available on my notebook from the beginning. But a <code>docker.io
+info</code> gave me:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo docker.io info
+</span><span class='line'>Containers: 0
+</span><span class='line'>Images: 0
+</span><span class='line'>Storage Driver: devicemapper
+</span><span class='line'> Pool Name: docker-8:1-131188-pool
+</span><span class='line'> Data file: /var/lib/docker/devicemapper/devicemapper/data
+</span><span class='line'> Metadata file: /var/lib/docker/devicemapper/devicemapper/metadata
+</span><span class='line'> Data Space Used: 291.5 Mb
+</span><span class='line'> Data Space Total: 102400.0 Mb
+</span><span class='line'> Metadata Space Used: 0.7 Mb
+</span><span class='line'> Metadata Space Total: 2048.0 Mb
+</span><span class='line'>Execution Driver: native-0.1
+</span><span class='line'>Kernel Version: 3.13.0-29-generic
+</span><span class='line'>WARNING: No swap limit support</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I then learned that somehow the DeviceMapper driver only allows a
+certain amount of diffs and I reached that amount with my build
+process. (Maybe it&rsquo;s possible to relax that restriction but I do not
+know how.)</p>
+
+<p>I learned as well that the Ubuntu cloud image that is provided by
+Microsoft Azure doesn&rsquo;t have AUFS support. Therefore Docker uses the
+DeviceMapper storage driver instead. After I installed the AUFS
+support I could export the images, change the storage driver and
+import the images again.</p>
+
+<p>It would be nice seeing the Docker documentation being more detailed
+on those storage drivers.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -571,6 +673,10 @@ ruby dependencies.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/">Mind the storage driver for Ubuntu cloud images (on Azure)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/07/24/datetime-conversion-can-be-tricky/">DateTime conversion can be tricky</a>
       </li>
     
@@ -584,10 +690,6 @@ ruby dependencies.</p>
     
       <li class="post">
         <a href="/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/">My Dockerfile for setting up Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/24/first-post/">First post</a>
       </li>
     
   </ul>
