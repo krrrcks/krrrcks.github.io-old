@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | Small pieces]]></title>
   <link href="http://krrrcks.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://krrrcks.github.io/"/>
-  <updated>2014-07-24T10:25:47+00:00</updated>
+  <updated>2014-10-05T11:27:48+00:00</updated>
   <id>http://krrrcks.github.io/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -19,7 +19,7 @@
     <updated>2014-07-24T09:41:36+00:00</updated>
     <id>http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky</id>
     <content type="html"><![CDATA[<p>I wrote a small Lisp application and a JavaScript client gets some
-date from that application. All time stamps are returned as &ldquo;Lisp&rdquo;
+data from that application. All time stamps are returned as &ldquo;Lisp&rdquo;
 time stamps, i.e. an integer with seconds where zero equals Jan 01
 1900.</p>
 
