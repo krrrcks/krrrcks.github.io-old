@@ -3,7 +3,7 @@ layout: post
 title: "Mind the storage driver for Ubuntu cloud images (on Azure)"
 date: 2014-07-24 12:30:43 +0000
 comments: true
-published: false 
+published: true
 categories: [Azure, Docker]
 ---
 
