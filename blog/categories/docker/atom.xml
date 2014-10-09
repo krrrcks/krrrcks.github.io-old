@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Docker | Small pieces]]></title>
-  <link href="http://krrrcks.github.io/blog/categories/docker/atom.xml" rel="self"/>
-  <link href="http://krrrcks.github.io/"/>
-  <updated>2014-10-05T11:30:26+00:00</updated>
-  <id>http://krrrcks.github.io/</id>
+  <link href="http://blog.krrrcks.net/blog/categories/docker/atom.xml" rel="self"/>
+  <link href="http://blog.krrrcks.net/"/>
+  <updated>2014-10-09T14:26:05+00:00</updated>
+  <id>http://blog.krrrcks.net/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Mind the storage driver for Ubuntu cloud images (on Azure)]]></title>
-    <link href="http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/"/>
+    <link href="http://blog.krrrcks.net/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/"/>
     <updated>2014-07-24T12:30:43+00:00</updated>
-    <id>http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure</id>
+    <id>http://blog.krrrcks.net/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure</id>
     <content type="html"><![CDATA[<p>A few days ago I wanted to build Firefox OS' newest release for a
 friend. Because I did not wanted these GB of code, binaries etc. on my
 notebook I fired up an Ubuntu image on Microsoft Azure. I feared that
@@ -75,9 +75,9 @@ on those storage drivers.</p>
   
   <entry>
     <title type="html"><![CDATA[Unicode support for Octopress]]></title>
-    <link href="http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress/"/>
+    <link href="http://blog.krrrcks.net/blog/2014/06/10/unicode-support-for-octopress/"/>
     <updated>2014-06-10T09:26:22+00:00</updated>
-    <id>http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress</id>
+    <id>http://blog.krrrcks.net/blog/2014/06/10/unicode-support-for-octopress</id>
     <content type="html"><![CDATA[<p>Well, it seems Octopress/Jekyll would like to have a locale set
 for UTF-8 support. I followed <a href="http://www.dominik-gaetjens.de/blog/2012/06/09/utf-8-in-octopress/">this (text in German)</a> hint and now my Dockerfile looks
 like this:</p>
@@ -87,7 +87,7 @@ like this:</p>
 <h1>dockerfile for octopress</h1>
 
 <p>FROM ubuntu:14.04
-MAINTAINER krrrcks <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#107;&#x72;&#114;&#114;&#99;&#107;&#115;&#64;&#107;&#114;&#114;&#x72;&#x63;&#107;&#x73;&#46;&#x6e;&#101;&#116;">&#107;&#114;&#x72;&#x72;&#x63;&#x6b;&#115;&#64;&#x6b;&#x72;&#114;&#x72;&#x63;&#x6b;&#115;&#x2e;&#110;&#101;&#x74;</a>
+MAINTAINER krrrcks <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x6b;&#114;&#114;&#x72;&#x63;&#107;&#x73;&#x40;&#107;&#x72;&#114;&#114;&#99;&#107;&#x73;&#46;&#x6e;&#x65;&#116;">&#107;&#x72;&#114;&#x72;&#x63;&#107;&#x73;&#x40;&#x6b;&#x72;&#114;&#x72;&#x63;&#107;&#x73;&#46;&#110;&#x65;&#x74;</a>
 ENV DEBIAN_FRONTEND noninteractive</p>
 
 <p>RUN apt-get update; \
@@ -129,9 +129,9 @@ browser nearly the same time.</p>
   
   <entry>
     <title type="html"><![CDATA[My Dockerfile for setting up Octopress]]></title>
-    <link href="http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/"/>
+    <link href="http://blog.krrrcks.net/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/"/>
     <updated>2014-05-26T09:24:00+00:00</updated>
-    <id>http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress</id>
+    <id>http://blog.krrrcks.net/blog/2014/05/26/my-dockerfile-for-setting-up-octopress</id>
     <content type="html"><![CDATA[<p>After my trouble with installing all the dependencies for Octopress I
 came up with the following Dockerfile for Docker. This follows the
 instructions from the Octopress homepage and uses RVM for managing the
@@ -142,7 +142,7 @@ ruby dependencies.</p>
 <h1>dockerfile for octopress</h1>
 
 <p>FROM ubuntu:14.04
-MAINTAINER krrrcks <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x6b;&#x72;&#114;&#x72;&#x63;&#107;&#x73;&#x40;&#x6b;&#114;&#114;&#x72;&#99;&#x6b;&#115;&#x2e;&#110;&#x65;&#116;">&#107;&#x72;&#114;&#x72;&#99;&#107;&#x73;&#64;&#x6b;&#x72;&#114;&#x72;&#99;&#x6b;&#x73;&#x2e;&#x6e;&#x65;&#116;</a>
+MAINTAINER krrrcks <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#107;&#114;&#114;&#x72;&#99;&#107;&#x73;&#64;&#x6b;&#114;&#114;&#114;&#x63;&#x6b;&#115;&#x2e;&#110;&#x65;&#116;">&#x6b;&#x72;&#114;&#114;&#99;&#x6b;&#x73;&#x40;&#107;&#114;&#x72;&#114;&#99;&#107;&#115;&#46;&#110;&#x65;&#x74;</a>
 ENV DEBIAN_FRONTEND noninteractive</p>
 
 <p>RUN apt-get update; \

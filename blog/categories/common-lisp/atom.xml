@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Common Lisp | Small pieces]]></title>
-  <link href="http://krrrcks.github.io/blog/categories/common-lisp/atom.xml" rel="self"/>
-  <link href="http://krrrcks.github.io/"/>
-  <updated>2014-10-05T11:30:26+00:00</updated>
-  <id>http://krrrcks.github.io/</id>
+  <link href="http://blog.krrrcks.net/blog/categories/common-lisp/atom.xml" rel="self"/>
+  <link href="http://blog.krrrcks.net/"/>
+  <updated>2014-10-09T14:26:05+00:00</updated>
+  <id>http://blog.krrrcks.net/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[DateTime conversion can be tricky]]></title>
-    <link href="http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky/"/>
+    <link href="http://blog.krrrcks.net/blog/2014/07/24/datetime-conversion-can-be-tricky/"/>
     <updated>2014-07-24T09:41:36+00:00</updated>
-    <id>http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky</id>
+    <id>http://blog.krrrcks.net/blog/2014/07/24/datetime-conversion-can-be-tricky</id>
     <content type="html"><![CDATA[<p>I wrote a small Lisp application and a JavaScript client gets some
 data from that application. All time stamps are returned as &ldquo;Lisp&rdquo;
 time stamps, i.e. an integer with seconds where zero equals Jan 01
@@ -62,9 +62,9 @@ process and only deliver a JavaScript-like time stamp.</p>
   
   <entry>
     <title type="html"><![CDATA[I learned something about symbols and packages]]></title>
-    <link href="http://krrrcks.github.io/blog/2014/07/06/i-learned-something-about-symbols-and-packages/"/>
+    <link href="http://blog.krrrcks.net/blog/2014/07/06/i-learned-something-about-symbols-and-packages/"/>
     <updated>2014-07-06T09:02:39+00:00</updated>
-    <id>http://krrrcks.github.io/blog/2014/07/06/i-learned-something-about-symbols-and-packages</id>
+    <id>http://blog.krrrcks.net/blog/2014/07/06/i-learned-something-about-symbols-and-packages</id>
     <content type="html"><![CDATA[<p>I am using Common Lisp for developing a web application. Several days
 ago a new part of this application didn&rsquo;t worked as supposed and I
 spent a considerable large amount of time in finding the bug. It was a

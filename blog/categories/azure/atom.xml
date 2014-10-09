@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Azure | Small pieces]]></title>
-  <link href="http://krrrcks.github.io/blog/categories/azure/atom.xml" rel="self"/>
-  <link href="http://krrrcks.github.io/"/>
-  <updated>2014-10-05T11:30:26+00:00</updated>
-  <id>http://krrrcks.github.io/</id>
+  <link href="http://blog.krrrcks.net/blog/categories/azure/atom.xml" rel="self"/>
+  <link href="http://blog.krrrcks.net/"/>
+  <updated>2014-10-09T14:26:05+00:00</updated>
+  <id>http://blog.krrrcks.net/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Mind the storage driver for Ubuntu cloud images (on Azure)]]></title>
-    <link href="http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/"/>
+    <link href="http://blog.krrrcks.net/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/"/>
     <updated>2014-07-24T12:30:43+00:00</updated>
-    <id>http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure</id>
+    <id>http://blog.krrrcks.net/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure</id>
     <content type="html"><![CDATA[<p>A few days ago I wanted to build Firefox OS' newest release for a
 friend. Because I did not wanted these GB of code, binaries etc. on my
 notebook I fired up an Ubuntu image on Microsoft Azure. I feared that

@@ -1,49 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://krrrcks.github.io/blog/2014/05/24/first-post/</loc>
+        <loc>http://blog.krrrcks.net/blog/2014/05/24/first-post/</loc>
         <lastmod>2014-07-07T12:20:27+00:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://krrrcks.github.io/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/
-        </loc>
+        <loc>http://blog.krrrcks.net/blog/2014/05/26/my-dockerfile-for-setting-up-octopress/</loc>
         <lastmod>2014-07-07T12:20:36+00:00</lastmod>
     </url>
     <url>
-        <loc>http://krrrcks.github.io/blog/2014/06/10/unicode-support-for-octopress/</loc>
+        <loc>http://blog.krrrcks.net/blog/2014/06/10/unicode-support-for-octopress/</loc>
         <lastmod>2014-07-07T12:20:41+00:00</lastmod>
     </url>
     <url>
         <loc>
-            http://krrrcks.github.io/blog/2014/07/06/i-learned-something-about-symbols-and-packages/
+            http://blog.krrrcks.net/blog/2014/07/06/i-learned-something-about-symbols-and-packages/
         </loc>
         <lastmod>2014-07-07T12:22:59+00:00</lastmod>
     </url>
     <url>
-        <loc>http://krrrcks.github.io/blog/2014/07/24/datetime-conversion-can-be-tricky/</loc>
+        <loc>http://blog.krrrcks.net/blog/2014/07/24/datetime-conversion-can-be-tricky/</loc>
         <lastmod>2014-07-24T12:29:30+00:00</lastmod>
     </url>
     <url>
         <loc>
-            http://krrrcks.github.io/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/
+            http://blog.krrrcks.net/blog/2014/07/24/mind-the-storage-driver-for-ubuntu-cloud-images-on-azure/
         </loc>
         <lastmod>2014-10-05T11:29:58+00:00</lastmod>
     </url>
     <url>
-        <loc>http://krrrcks.github.io/blog/archives/</loc>
+        <loc>http://blog.krrrcks.net/blog/archives/</loc>
         <lastmod>2014-10-05T11:29:58+00:00</lastmod>
     </url>
     <url>
-        <loc>http://krrrcks.github.io/about/</loc>
+        <loc>http://blog.krrrcks.net/about/</loc>
         <lastmod>2014-07-06T15:04:55+00:00</lastmod>
     </url>
     <url>
-        <loc>http://krrrcks.github.io/robots.txt</loc>
+        <loc>http://blog.krrrcks.net/robots.txt</loc>
         <lastmod>2014-05-26T12:54:03+00:00</lastmod>
     </url>
     <url>
-        <loc>http://krrrcks.github.io/</loc>
+        <loc>http://blog.krrrcks.net/</loc>
         <lastmod>2014-10-05T11:29:58+00:00</lastmod>
     </url>
 </urlset>
