@@ -4,7 +4,7 @@
   <title><![CDATA[Small pieces]]></title>
   <link href="http://blog.krrrcks.net/atom.xml" rel="self"/>
   <link href="http://blog.krrrcks.net/"/>
-  <updated>2014-10-09T14:29:31+00:00</updated>
+  <updated>2014-10-23T14:17:13+00:00</updated>
   <id>http://blog.krrrcks.net/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -85,6 +85,12 @@ import the images again.</p>
 
 <p>It would be nice seeing the Docker documentation being more detailed
 on those storage drivers.</p>
+
+<p><strong>(Update 2014-10-23)</strong> Thanks to
+ <a href="http://blog.iron.io/2014/10/docker-in-production-what-weve-learned.html">this blog post from Iron.io</a>
+ I found some documentation of the devicemapper storage driver. It is
+ located in the
+ <a href="https://github.com/docker/docker/tree/master/daemon/graphdriver/devmapper">Repository</a>.</p>
 ]]></content>
   </entry>
   
