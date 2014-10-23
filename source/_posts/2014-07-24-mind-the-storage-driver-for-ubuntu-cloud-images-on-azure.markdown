@@ -59,3 +59,9 @@ import the images again.
 
 It would be nice seeing the Docker documentation being more detailed
 on those storage drivers.
+
+**(Update 2014-10-23)** Thanks to
+ [this blog post from Iron.io](http://blog.iron.io/2014/10/docker-in-production-what-weve-learned.html)
+ I found some documentation of the devicemapper storage driver. It is
+ located in the
+ [Repository](https://github.com/docker/docker/tree/master/daemon/graphdriver/devmapper). 
