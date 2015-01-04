@@ -4,7 +4,7 @@
   <title><![CDATA[Small pieces]]></title>
   <link href="http://blog.krrrcks.net/atom.xml" rel="self"/>
   <link href="http://blog.krrrcks.net/"/>
-  <updated>2014-10-23T14:17:13+00:00</updated>
+  <updated>2015-01-04T16:47:11+00:00</updated>
   <id>http://blog.krrrcks.net/</id>
   <author>
     <name><![CDATA[Krrrcks]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Moving blog posts]]></title>
+    <link href="http://blog.krrrcks.net/blog/2015/01/04/moving-blog-posts/"/>
+    <updated>2015-01-04T16:44:15+00:00</updated>
+    <id>http://blog.krrrcks.net/blog/2015/01/04/moving-blog-posts</id>
+    <content type="html"><![CDATA[<p>After a while with two blogs I decided that I will post new entries
+only on my mostly German <a href="http://www.dbrunner.de">blog</a>. All old
+entries have been copied there. I will keep this blog but it is
+unlikely that new content is coming the next weeks, months. If you&rsquo;re
+interested, follow my <a href="http://www.dbrunner.de">main blog</a>,
+<a href="http://www.dbrunner.de/atom.xml">Atom feed</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mind the storage driver for Ubuntu cloud images (on Azure)]]></title>
